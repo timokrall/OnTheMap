@@ -8,20 +8,22 @@
 
 /* Begin PBXBuildFile section */
 		F447917F1C0A2BD5002CF94F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F447917E1C0A2BD5002CF94F /* AppDelegate.swift */; };
-		F44791811C0A2BD5002CF94F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44791801C0A2BD5002CF94F /* ViewController.swift */; };
+		F44791811C0A2BD5002CF94F /* ViewControllerLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = F44791801C0A2BD5002CF94F /* ViewControllerLogin.swift */; };
 		F44791841C0A2BD5002CF94F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44791821C0A2BD5002CF94F /* Main.storyboard */; };
 		F44791861C0A2BD5002CF94F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F44791851C0A2BD5002CF94F /* Assets.xcassets */; };
 		F44791891C0A2BD5002CF94F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44791871C0A2BD5002CF94F /* LaunchScreen.storyboard */; };
+		F4A43CF51C0A3A0D0032D9DE /* Circular-Udacity-Logo.png in Resources */ = {isa = PBXBuildFile; fileRef = F4A43CF41C0A3A0D0032D9DE /* Circular-Udacity-Logo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		F447917B1C0A2BD5002CF94F /* OnTheMap.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = OnTheMap.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F447917E1C0A2BD5002CF94F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		F44791801C0A2BD5002CF94F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F44791801C0A2BD5002CF94F /* ViewControllerLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewControllerLogin.swift; sourceTree = "<group>"; };
 		F44791831C0A2BD5002CF94F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F44791851C0A2BD5002CF94F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F44791881C0A2BD5002CF94F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F447918A1C0A2BD5002CF94F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F4A43CF41C0A3A0D0032D9DE /* Circular-Udacity-Logo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Circular-Udacity-Logo.png"; path = "../../../../Downloads/Circular-Udacity-Logo.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -55,9 +57,10 @@
 			isa = PBXGroup;
 			children = (
 				F447917E1C0A2BD5002CF94F /* AppDelegate.swift */,
-				F44791801C0A2BD5002CF94F /* ViewController.swift */,
+				F44791801C0A2BD5002CF94F /* ViewControllerLogin.swift */,
 				F44791821C0A2BD5002CF94F /* Main.storyboard */,
 				F44791851C0A2BD5002CF94F /* Assets.xcassets */,
+				F4A43CF41C0A3A0D0032D9DE /* Circular-Udacity-Logo.png */,
 				F44791871C0A2BD5002CF94F /* LaunchScreen.storyboard */,
 				F447918A1C0A2BD5002CF94F /* Info.plist */,
 			);
@@ -126,6 +129,7 @@
 				F44791891C0A2BD5002CF94F /* LaunchScreen.storyboard in Resources */,
 				F44791861C0A2BD5002CF94F /* Assets.xcassets in Resources */,
 				F44791841C0A2BD5002CF94F /* Main.storyboard in Resources */,
+				F4A43CF51C0A3A0D0032D9DE /* Circular-Udacity-Logo.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -136,7 +140,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F44791811C0A2BD5002CF94F /* ViewController.swift in Sources */,
+				F44791811C0A2BD5002CF94F /* ViewControllerLogin.swift in Sources */,
 				F447917F1C0A2BD5002CF94F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -285,6 +289,7 @@
 				F447918F1C0A2BD5002CF94F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
