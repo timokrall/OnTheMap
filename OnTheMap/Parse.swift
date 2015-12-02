@@ -37,7 +37,7 @@ class Parse {
     
     func getLocations(callback: ((error: String?) -> Void)) {
         
-        let url = baseURL + "UserLocation"
+        let url = baseURL + "StudentLocation"
         
         request.GET(url, headers: reqHeaders, isUdacity: false) { (data, response, error) -> Void in
             
@@ -88,7 +88,7 @@ class Parse {
         
         if(alreadyPosted == false){
             // Use Parse POST method to create a new value
-            let url = baseURL + "UserLocation"
+            let url = baseURL + "StudentLocation"
             
             request.POST(url, headers: reqHeaders, body: userUpdate, isUdacity: false) { (data, response, error) -> Void in
                 
@@ -113,7 +113,7 @@ class Parse {
             
         }else{
             // Use Parse PUT method to update an existing value
-            let url = baseURL + "UserLocation/" + objectId!
+            let url = baseURL + "StudentLocation/" + objectId!
             
             request.PUT(url, headers: reqHeaders, body: userUpdate, isUdacity: false) { (data, response, error) -> Void in
                 
