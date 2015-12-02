@@ -8,6 +8,10 @@
 
 import UIKit
 import AVFoundation
+
+// Added Facebook SDK successfully after reading http://stackoverflow.com/questions/30313853/swift-facebook-login-my-uiviewcontroller-does-not-conform-to-fbsdkloginbutto
+// Enabled Facebook login by adding additional settings at developers.facebook.com after reading http://stackoverflow.com/questions/31977310/fbsdkloginmanager-with-fbsdkloginbehaviorweb-failing-with-not-logged-in-error
+
 import FBSDKCoreKit
 import FBSDKLoginKit
 
@@ -30,10 +34,13 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        // Added Facebook login viewDidLoad code after reading http://stackoverflow.com/questions/29750047/facebook-login-button-for-swift
+        
         // Prepare Facebook login
         self.loginButton.delegate = self
         
         // Check whether user is logged in to Facebook and either skip login process or give permissions for login
+        
             if (FBSDKAccessToken.currentAccessToken() == nil) {
                 print("Not logged in.")
                 loginButton.readPermissions = ["public_profile", "email", "user_friends"]
@@ -49,7 +56,7 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
 
     // MARK: Functions
 
-    // TODO: Function for logging in via Facebook
+    // Function for logging in via Facebook
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
 
         print("User logged in")
@@ -89,7 +96,8 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
 
     // MARK: Actions
     
-    // TODO: Action for logging into Facebook
+    // Action for logging into Facebook
+    // Fixed button layout after reading https://discussions.udacity.com/t/facebook-login-logout-button/16670
     @IBAction func loginActionFacebook(sender: FBSDKLoginButton) {
         
         print("User logged in.")
