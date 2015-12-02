@@ -8,6 +8,8 @@
 
 import UIKit
 import MapKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class ViewControllerMap: UIViewController, MKMapViewDelegate {
 
@@ -119,7 +121,11 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
     
     @IBAction func mapLogout(sender: AnyObject) {
         
-        // Go back to login view controller if logout button is pressed
+        // Logout from Facebook
+        let loginManager = FBSDKLoginManager()
+        loginManager.logOut()
+        
+        // Logout from Udacity
         udacity.logout(){() -> Void in
             let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerLogin")
             self.presentViewController(controller, animated: true, completion: nil)

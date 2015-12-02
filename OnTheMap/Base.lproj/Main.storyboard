@@ -99,7 +99,6 @@
                                     <constraint firstItem="KFO-6T-I41" firstAttribute="top" secondItem="9KX-jW-KSo" secondAttribute="bottom" constant="44" id="Bng-3w-EOx"/>
                                     <constraint firstItem="itn-lD-m3f" firstAttribute="top" secondItem="3bn-rS-XEB" secondAttribute="bottom" constant="8" id="IdB-vb-y4v"/>
                                     <constraint firstItem="3bn-rS-XEB" firstAttribute="centerX" secondItem="W1s-jk-seR" secondAttribute="centerX" id="J9o-Yl-7Q9"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ff1-I5-H87" secondAttribute="bottom" constant="64" id="OkS-Tz-g0X"/>
                                     <constraint firstItem="itn-lD-m3f" firstAttribute="centerX" secondItem="W1s-jk-seR" secondAttribute="centerX" id="Qk6-IZ-X6L"/>
                                     <constraint firstAttribute="trailing" secondItem="Ff1-I5-H87" secondAttribute="trailing" constant="8" id="UU9-jC-bk6"/>
                                     <constraint firstItem="KFO-6T-I41" firstAttribute="centerX" secondItem="W1s-jk-seR" secondAttribute="centerX" id="Ylj-ad-pME"/>
@@ -120,24 +119,44 @@
                                 <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b2m-NZ-cfO" customClass="FBSDKLoginButton">
+                                <rect key="frame" x="72" y="686" width="271" height="30"/>
+                                <animations/>
+                                <color key="backgroundColor" red="0.20000000000000001" green="0.28627450980392155" blue="0.53725490196078429" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="lt2-fO-uDU"/>
+                                </constraints>
+                                <state key="normal" title="Facebook Login">
+                                    <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                </state>
+                                <connections>
+                                    <action selector="loginActionFacebook:" destination="BYZ-38-t0r" eventType="touchUpInside" id="QeB-lw-nvE"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstAttribute="trailingMargin" secondItem="b2m-NZ-cfO" secondAttribute="trailing" constant="51" id="2nj-71-ptG"/>
+                            <constraint firstItem="b2m-NZ-cfO" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="52" id="5Ur-Af-0Ka"/>
                             <constraint firstItem="W1s-jk-seR" firstAttribute="centerY" secondItem="8bC-Xf-vdC" secondAttribute="centerY" id="QNH-dI-Tb5"/>
                             <constraint firstItem="W1s-jk-seR" firstAttribute="height" secondItem="8bC-Xf-vdC" secondAttribute="height" id="Xzk-b3-7uE"/>
                             <constraint firstItem="60I-Tz-WH1" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="YFv-MF-iIB"/>
+                            <constraint firstItem="b2m-NZ-cfO" firstAttribute="top" secondItem="Ff1-I5-H87" secondAttribute="bottom" constant="14" id="YPV-MN-cbC"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="60I-Tz-WH1" secondAttribute="bottom" constant="218" id="czf-r3-iLD"/>
                             <constraint firstItem="W1s-jk-seR" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="dRe-Xd-g6E"/>
                             <constraint firstItem="W1s-jk-seR" firstAttribute="width" secondItem="8bC-Xf-vdC" secondAttribute="width" id="e3z-ML-d6V"/>
+                            <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="b2m-NZ-cfO" secondAttribute="bottom" constant="20" id="n7V-aN-NpE"/>
                         </constraints>
                     </view>
                     <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
                     <connections>
                         <outlet property="buttonSignInUdacity" destination="itn-lD-m3f" id="Dew-hi-pbh"/>
+                        <outlet property="loginButton" destination="b2m-NZ-cfO" id="m7f-Cx-PqO"/>
                         <outlet property="textFieldEmail" destination="KFO-6T-I41" id="ru7-Xz-A9M"/>
                         <outlet property="textFieldPassword" destination="3bn-rS-XEB" id="1PM-xV-gXQ"/>
+                        <segue destination="Cby-aF-X96" kind="show" identifier="segueFromLoginToTab" id="BDM-Pf-69F"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -217,6 +236,9 @@
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina55"/>
+                    <connections>
+                        <outlet property="loginButton" destination="m1e-19-yes" id="mme-48-3wF"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wEc-bK-8SW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

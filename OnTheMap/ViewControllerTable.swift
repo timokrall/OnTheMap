@@ -7,9 +7,15 @@
 //
 
 import UIKit
+import FBSDKCoreKit
+import FBSDKLoginKit
 
 class ViewControllerTable: UITableViewController {
 
+    // MARK: Outlets
+    
+    @IBOutlet weak var loginButton: FBSDKLoginButton!
+    
     // MARK: Variables
     
     let userDataModel = userModel.sharedInstance()
@@ -22,7 +28,7 @@ class ViewControllerTable: UITableViewController {
         super.viewDidLoad()
         
         getUserData()
-        
+    
     }
 
     override func didReceiveMemoryWarning() {
@@ -94,6 +100,18 @@ class ViewControllerTable: UITableViewController {
 
     // MARK: Functions
     
+    func transitionToViewControllerLogin() {
+        
+        // Transition to tab controller
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerLogin")
+        
+        NSOperationQueue.mainQueue().addOperationWithBlock {
+            
+            self.presentViewController(controller, animated: true, completion: nil)
+            
+        }
+    }
+    
     func getUserData() {
         parse.getLocations() { (error) -> Void in
             if (error != nil){
@@ -117,13 +135,17 @@ class ViewControllerTable: UITableViewController {
 
     // MARK: Actions
     
-    @IBAction func tableLogout(sender: AnyObject) {
+    @IBAction func tableLogout(sender: FBSDKLoginButton) {
         
-        udacity.logout(){() -> Void in
+            // Logout from Facebook
+            let loginManager = FBSDKLoginManager()
+            loginManager.logOut()
+        
+            // Logout from Udacity
+            udacity.logout(){() -> Void in
             
             // Switch to login view controller if logout button is pressed
-            let controller = self.storyboard!.instantiateViewControllerWithIdentifier("ViewControllerLogin")
-            self.presentViewController(controller, animated: true, completion: nil)
+            self.transitionToViewControllerLogin()
             
         }
         
