@@ -26,7 +26,7 @@ class studentModel {
         return studentData
     }
     
-    func getStudentInfo(StudentId: String)->StudentInformation? {
+    func getStudentInfo(studentId: String)->StudentInformation? {
         
         // Return nil if no student exists
         if(studentData == nil){
@@ -34,9 +34,9 @@ class studentModel {
             
         }
         
-        // Return user with StudentId from user data array
+        // Return user with studentId from user data array
         for student in studentData! {
-            if (student.uniqueKey == StudentId){
+            if (student.uniqueKey == studentId){
                 return student
             }
         }

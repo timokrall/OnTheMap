@@ -113,7 +113,7 @@ class ViewControllerTable: UITableViewController {
     }
     
     func getStudentData() {
-        parse.getLocations() { (error) -> Void in
+        parse.getStudentLocations() { (error) -> Void in
             if (error != nil){
                 
                 dispatch_async(dispatch_get_main_queue(), {

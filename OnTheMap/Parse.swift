@@ -35,7 +35,7 @@ class Parse {
         
     }
     
-    func getLocations(callback: ((error: String?) -> Void)) {
+    func getStudentLocations(callback: ((error: String?) -> Void)) {
         
         let url = baseURL + "StudentLocation"
         
@@ -65,7 +65,7 @@ class Parse {
         
     }
     
-    func upsertStudentData(locationId: String, studentUpdate: [String: AnyObject], callback: ((error: String?) -> Void)) {
+    func upsertStudentData(studentId: String, studentUpdate: [String: AnyObject], callback: ((error: String?) -> Void)) {
         
         // Check location data has loaded
         if(studentDataModel.getStudentData() == nil){
@@ -73,14 +73,14 @@ class Parse {
             return
         }
         
-        // Check if locationId exists in locationData array
+        // Check if studentId exists in locationData array
         var alreadyPosted: Bool = false
         var objectId: String? = nil
         
         let studentData = studentDataModel.getStudentData()
         
         for student in studentData! {
-            if (student.uniqueKey == locationId){
+            if (student.uniqueKey == studentId){
                 alreadyPosted = true
                 objectId = student.objectId
             }
