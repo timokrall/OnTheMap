@@ -17,7 +17,7 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
     
     // MARK: Variables
     
-    let userDataModel = userModel.sharedInstance()
+    let studentDataModel = studentModel.sharedInstance()
     let parse = Parse.sharedInstance()
     let udacity = Udacity.sharedInstance()
     let geoCoder = CLGeocoder()
@@ -101,13 +101,13 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
         
         textFieldEnterLocation.resignFirstResponder()
         
-        // If user is asked to confirm URL and button is pressed, submit user data to parse
+        // If student is asked to confirm URL and button is pressed, submit student data to parse
         if(buttonFind.titleLabel?.text == "Confirm URL"){
 
             let userId = reqBody["uniqueKey"] as! String
             reqBody["mediaURL"] = textFieldEnterLocation.text
             
-            parse.upsertUserData(userId, userUpdate: reqBody){ (error) -> Void in
+            parse.upsertStudentData(userId, studentUpdate: reqBody){ (error) -> Void in
                 
                 let msg = error == nil ? "Update Successful." : "Error updating data."
                 
@@ -124,7 +124,7 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
         }
             
             
-        // If the user is asked to visit the URL and the button is pressed, visit the URL and ask user to confirm URL
+        // If the student is asked to visit the URL and the button is pressed, visit the URL and ask student to confirm URL
         else if(buttonFind.titleLabel?.text == "Visit URL"){
             
             let url = NSURL(string: textFieldEnterLocation.text!)!
@@ -134,7 +134,7 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
             
         }
             
-        // If the user is asked to confirm the entered location and the button is pressed...
+        // If the student is asked to confirm the entered location and the button is pressed...
         else if(buttonFind.titleLabel?.text == "Confirm Location"){
             
             // ...change button text
@@ -168,7 +168,7 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
             labelTwo.text = "your"
             labelThree.text = "website?"
             
-        // If the user is asked to find his or her location on the map and the button is pressed, ask user to confirm the location or display an error message
+        // If the student is asked to find his or her location on the map and the button is pressed, ask student to confirm the location or display an error message
         }else{
 
             textFieldEnterLocation.resignFirstResponder()
@@ -204,13 +204,13 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
         super.viewDidLoad()
         
         // Setup reqBody
-        let userId = udacity.getSession()["key"]!
+        let studentId = udacity.getSession()["key"]!
         
-        reqBody["uniqueKey"] = userId
+        reqBody["uniqueKey"] = studentId
         reqBody["firstName"] = udacity.getUserData()["firstName"]!
         reqBody["lastName"] = udacity.getUserData()["lastName"]!
         
-        if let userParseData = userDataModel.getUserInfo(userId!) {
+        if let userParseData = studentDataModel.getStudentInfo(studentId!) {
             reqBody["mapString"] = userParseData.mapString!
             reqBody["mediaURL"] = userParseData.mediaURL!
         }

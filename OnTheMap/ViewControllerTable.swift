@@ -18,7 +18,7 @@ class ViewControllerTable: UITableViewController {
     
     // MARK: Variables
     
-    let userDataModel = userModel.sharedInstance()
+    let studentDataModel = studentModel.sharedInstance()
     let parse = Parse.sharedInstance()
     let udacity = Udacity.sharedInstance()
     
@@ -27,7 +27,7 @@ class ViewControllerTable: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        getUserData()
+        getStudentData()
     
     }
 
@@ -49,11 +49,11 @@ class ViewControllerTable: UITableViewController {
             
         }
         
-        if let userData = userDataModel.getUserData(){
+        if let studentData = studentDataModel.getStudentData(){
             
-            // Enter saver user names into cells
-            let currentUser = userData[indexPath.row]
-            cell!.textLabel!.text = currentUser.firstName! + " " + currentUser.lastName!
+            // Enter saver student names into cells
+            let currentStudent = studentData[indexPath.row]
+            cell!.textLabel!.text = currentStudent.firstName! + " " + currentStudent.lastName!
             
         }
         
@@ -62,10 +62,10 @@ class ViewControllerTable: UITableViewController {
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let userData = userDataModel.getUserData(){
+        if let studentData = studentDataModel.getStudentData(){
             
-            // Number of cells is equal to the number of saved users
-            return userData.count
+            // Number of cells is equal to the number of saved students
+            return studentData.count
             
         }else{
             
@@ -76,19 +76,19 @@ class ViewControllerTable: UITableViewController {
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        if let userData = userDataModel.getUserData(){
+        if let studentData = studentDataModel.getStudentData(){
             
-            let user = userData[indexPath.row]
+            let student = studentData[indexPath.row]
             
-            if let url = user.mediaURL{
+            if let url = student.mediaURL{
                 
-                // If a user selects a cell and no error occurs, open the respective user URL
+                // If a student selects a cell and no error occurs, open the respective student URL
                 let app = UIApplication.sharedApplication()
                 app.openURL(NSURL(string: url)!)
                 
             }else{
                 
-                // If a user selects a cell and there is no user URL associated with that cell, display an error
+                // If a student selects a cell and there is no student URL associated with that cell, display an error
                 let alertController = UIAlertController(title: "URL Error", message: "", preferredStyle: UIAlertControllerStyle.Alert)
                 alertController.addAction(UIAlertAction(title: "Please input a URL.", style: UIAlertActionStyle.Default,handler: nil))
                 self.presentViewController(alertController, animated: true, completion: nil)
@@ -112,14 +112,14 @@ class ViewControllerTable: UITableViewController {
         }
     }
     
-    func getUserData() {
+    func getStudentData() {
         parse.getLocations() { (error) -> Void in
             if (error != nil){
                 
                 dispatch_async(dispatch_get_main_queue(), {
                     
-                    // If the user data could not be accessed, display an error message
-                    let alertController = UIAlertController(title: "User Data Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                    // If the student data could not be accessed, display an error message
+                    let alertController = UIAlertController(title: "Student Data Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
                     alertController.addAction(UIAlertAction(title: "The data could not be retrieved.", style: UIAlertActionStyle.Default,handler: nil))
                     self.presentViewController(alertController, animated: true, completion: nil)
                 
@@ -162,8 +162,8 @@ class ViewControllerTable: UITableViewController {
     
     @IBAction func tableRefresh(sender: AnyObject) {
         
-        // Access current user data if refresh button is pressed
-        getUserData()
+        // Access current student data if refresh button is pressed
+        getStudentData()
         
     }
     

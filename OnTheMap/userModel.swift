@@ -1,5 +1,5 @@
 //
-//  userModel.swift
+//  studentModel.swift
 //  OnTheMap
 //
 //  Created by Timo Krall on 11/30/15.
@@ -8,47 +8,47 @@
 
 import Foundation
 
-class userModel {
+class studentModel {
 // Class fixed after looking up https://github.com/RP-3/OnTheMap-Submission
     
     // MARK: Variables
     
-    var userData:[UserInformation]? = nil
+    var studentData:[StudentInformation]? = nil
     
     // MARK: Functions
     
     // Sort user data
-    func setUserData(newData:[UserInformation]){
-        userData = newData.sort({$0.updatedAt!.timeIntervalSinceNow > $1.updatedAt!.timeIntervalSinceNow})
+    func setStudentData(newData:[StudentInformation]){
+        studentData = newData.sort({$0.updatedAt!.timeIntervalSinceNow > $1.updatedAt!.timeIntervalSinceNow})
     }
     
-    func getUserData()->[UserInformation]?{
-        return userData
+    func getStudentData()->[StudentInformation]?{
+        return studentData
     }
     
-    func getUserInfo(userId: String)->UserInformation? {
+    func getStudentInfo(StudentId: String)->StudentInformation? {
         
-        // Return nil if no user exists
-        if(userData == nil){
+        // Return nil if no student exists
+        if(studentData == nil){
             return nil
             
         }
         
-        // Return user with userId from user data array
-        for user in userData! {
-            if (user.uniqueKey == userId){
-                return user
+        // Return user with StudentId from user data array
+        for student in studentData! {
+            if (student.uniqueKey == StudentId){
+                return student
             }
         }
         
         return nil
     }
     
-    // Singleton to ensure that userModel runs only once
-    class func sharedInstance() -> userModel {
+    // Singleton to ensure that studentModel runs only once
+    class func sharedInstance() -> studentModel {
         
         struct Singleton {
-            static var sharedInstance = userModel()
+            static var sharedInstance = studentModel()
         }
         
         return Singleton.sharedInstance

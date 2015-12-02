@@ -15,7 +15,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
 
     // MARK: Variables
     
-    let userDataModel = userModel.sharedInstance()
+    let studentDataModel = studentModel.sharedInstance()
     let parse = Parse.sharedInstance()
     let udacity = Udacity.sharedInstance()
 
@@ -31,7 +31,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
         
         mapView.delegate = self
         
-        getUserData()
+        getStudentData()
         
     }
 
@@ -41,39 +41,39 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
     
     // MARK: Functions
     
-    func getUserData(){
+    func getStudentData(){
     
         parse.getLocations() { (error) -> Void in
             if (error != nil){
 
                 dispatch_async(dispatch_get_main_queue(), {
                     
-                    // Display error if user data cannot be retrieved
+                    // Display error if student data cannot be retrieved
                     let alertController = UIAlertController(title: "Data Access Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
-                    alertController.addAction(UIAlertAction(title: "The user data could not be accessed", style: UIAlertActionStyle.Default,handler: nil))
+                    alertController.addAction(UIAlertAction(title: "The student data could not be accessed", style: UIAlertActionStyle.Default,handler: nil))
                     self.presentViewController(alertController, animated: true, completion: nil)
                 })
             }else{
                 
-                // Display user data if no error occurs
-                var userPinsArray: Array<userPin> = []
+                // Display student data if no error occurs
+                var studentPinsArray: Array<studentPin> = []
                 
-                if let userData = self.userDataModel.getUserData(){
+                if let studentData = self.studentDataModel.getStudentData(){
                     
-                    for user in userData {
+                    for student in studentData {
                         
-                        // Setup user first and last name
-                        let userName = user.firstName! + " " + user.lastName!
+                        // Setup student first and last name
+                        let studentName = student.firstName! + " " + student.lastName!
                         
-                        // Setup user study location
-                        let userCoord = CLLocationCoordinate2D(latitude: user.latitude!, longitude: user.longitude!)
+                        // Setup student study location
+                        let studentCoord = CLLocationCoordinate2D(latitude: student.latitude!, longitude: student.longitude!)
                         
-                        // Setup user URL
-                        let userSubtitle = user.mediaURL!
+                        // Setup student URL
+                        let studentSubtitle = student.mediaURL!
                         
-                        // Show collected user information
-                        let newUserPin = userPin(title: userName, subtitle: userSubtitle, coordinate: userCoord)
-                        userPinsArray.append(newUserPin)
+                        // Show collected student information
+                        let newStudentPin = studentPin(title: studentName, subtitle: studentSubtitle, coordinate: studentCoord)
+                        studentPinsArray.append(newStudentPin)
                     }
                 }
                 
@@ -84,21 +84,21 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
                     self.mapView.removeAnnotations( annotationsToRemove )
                     
                     // Add new annotations
-                    self.mapView.addAnnotations(userPinsArray)
+                    self.mapView.addAnnotations(studentPinsArray)
                 })
             }
         }
     }
     
-    // Function for displaying user location
+    // Function for displaying student location
     func mapView(mapView: MKMapView, viewForAnnotation annotation: MKAnnotation) -> MKAnnotationView? {
         
         let reuseId = "pin"
         var pinView = mapView.dequeueReusableAnnotationViewWithIdentifier(reuseId) as? MKPinAnnotationView
         
         if pinView == nil {
-            let userAnnotation = annotation as! userPin
-            pinView = MKPinAnnotationView(annotation: userAnnotation, reuseIdentifier: reuseId)
+            let studentAnnotation = annotation as! studentPin
+            pinView = MKPinAnnotationView(annotation: studentAnnotation, reuseIdentifier: reuseId)
             pinView!.canShowCallout = true
             pinView!.pinTintColor = UIColor.redColor()
             pinView!.rightCalloutAccessoryView = UIButton(type: .DetailDisclosure)
@@ -109,7 +109,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
         return pinView
     }
     
-    // Function for responding to user tap
+    // Function for responding to student tap
     func mapView(mapView: MKMapView, annotationView: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
         if control == annotationView.rightCalloutAccessoryView {
             let app = UIApplication.sharedApplication()
@@ -136,8 +136,8 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
     
     @IBAction func mapRefresh(sender: AnyObject) {
         
-        // Retrieve current user data if refresh button is pressed
-        getUserData()
+        // Retrieve current student data if refresh button is pressed
+        getStudentData()
 
     }
     

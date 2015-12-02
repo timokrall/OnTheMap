@@ -14,7 +14,7 @@ class Parse {
 // Code of this class fixed after comparing with https://github.com/RP-3/OnTheMap-Submission
     
     let request = Request.sharedInstance()
-    let userDataModel = userModel.sharedInstance()
+    let studentDataModel = studentModel.sharedInstance()
     let baseURL = "https://api.parse.com/1/classes/"
     
     let reqHeaders = [
@@ -22,12 +22,12 @@ class Parse {
         "X-Parse-REST-API-Key": "QuWThTdiRmTux3YaDseUSEpUKo7aBYM737yKd4gY"
     ]
     
-    func parseUserData(data: [NSDictionary]) -> [UserInformation]{
+    func parseStudentData(data: [NSDictionary]) -> [StudentInformation]{
         
-        var result: Array<UserInformation> = []
+        var result: Array<StudentInformation> = []
         
         for dict in data {
-            let s:UserInformation = UserInformation(dict: dict)
+            let s:StudentInformation = StudentInformation(dict: dict)
             result.append(s)
         }
         
@@ -47,7 +47,7 @@ class Parse {
                 return
             }
             
-            // Handle user error
+            // Handle student error
             let httpResponse = response as! NSHTTPURLResponse
             if(httpResponse.statusCode > 399 && httpResponse.statusCode < 500){
                 callback(error: "Invalid login credentials")
@@ -56,7 +56,7 @@ class Parse {
             
             let arrayObjs = data as! [String: AnyObject]
             let arrayDicts = (arrayObjs["results"]! as? [NSDictionary])
-            self.userDataModel.setUserData(self.parseUserData(arrayDicts!))
+            self.studentDataModel.setStudentData(self.parseStudentData(arrayDicts!))
             
             // Return session data to login view controller
             callback(error: nil)
@@ -65,11 +65,11 @@ class Parse {
         
     }
     
-    func upsertUserData(locationId: String, userUpdate: [String: AnyObject], callback: ((error: String?) -> Void)) {
+    func upsertStudentData(locationId: String, studentUpdate: [String: AnyObject], callback: ((error: String?) -> Void)) {
         
         // Check location data has loaded
-        if(userDataModel.getUserData() == nil){
-            callback(error: "User Data not yet loaded")
+        if(studentDataModel.getStudentData() == nil){
+            callback(error: "Student Data not yet loaded")
             return
         }
         
@@ -77,12 +77,12 @@ class Parse {
         var alreadyPosted: Bool = false
         var objectId: String? = nil
         
-        let userData = userDataModel.getUserData()
+        let studentData = studentDataModel.getStudentData()
         
-        for user in userData! {
-            if (user.uniqueKey == locationId){
+        for student in studentData! {
+            if (student.uniqueKey == locationId){
                 alreadyPosted = true
-                objectId = user.objectId
+                objectId = student.objectId
             }
         }
         
@@ -90,7 +90,7 @@ class Parse {
             // Use Parse POST method to create a new value
             let url = baseURL + "StudentLocation"
             
-            request.POST(url, headers: reqHeaders, body: userUpdate, isUdacity: false) { (data, response, error) -> Void in
+            request.POST(url, headers: reqHeaders, body: studentUpdate, isUdacity: false) { (data, response, error) -> Void in
                 
                 // Handle connection error
                 if error != nil {
@@ -98,7 +98,7 @@ class Parse {
                     return
                 }
                 
-                // Handle user error
+                // Handle student error
                 let httpResponse = response as! NSHTTPURLResponse
                 if(httpResponse.statusCode > 399 && httpResponse.statusCode < 500){
                     callback(error: "Access denied")
@@ -115,7 +115,7 @@ class Parse {
             // Use Parse PUT method to update an existing value
             let url = baseURL + "StudentLocation/" + objectId!
             
-            request.PUT(url, headers: reqHeaders, body: userUpdate, isUdacity: false) { (data, response, error) -> Void in
+            request.PUT(url, headers: reqHeaders, body: studentUpdate, isUdacity: false) { (data, response, error) -> Void in
                 
                 // Handle connection error
                 if error != nil {
@@ -123,7 +123,7 @@ class Parse {
                     return
                 }
                 
-                // Handle user error
+                // Handle student error
                 let httpResponse = response as! NSHTTPURLResponse
                 if(httpResponse.statusCode > 399 && httpResponse.statusCode < 500){
                     callback(error: "Access denied")

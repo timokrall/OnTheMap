@@ -46,7 +46,7 @@ class Udacity {
                 return
             }
             
-            // Save public user info
+            // Save public student info
             let firstName = data!["user"]!!["first_name"] as! String
             let lastName = data!["user"]!!["last_name"] as! String
             

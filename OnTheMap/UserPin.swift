@@ -1,5 +1,5 @@
 //
-//  userPin.swift
+//  studentPin.swift
 //  OnTheMap
 //
 //  Created by Timo Krall on 11/30/15.
@@ -9,7 +9,7 @@
 import Foundation
 import MapKit
 
-class userPin: NSObject, MKAnnotation {
+class studentPin: NSObject, MKAnnotation {
 // Class added after looking up https://github.com/RP-3/OnTheMap-Submission
     
     // MARK: Variables
@@ -26,7 +26,6 @@ class userPin: NSObject, MKAnnotation {
         self.subtitle = subtitle
         self.coordinate = coordinate
         super.init()
-        
     
     }
     

@@ -1,5 +1,5 @@
 //
-//  userStruct.swift
+//  studentStruct.swift
 //  OnTheMap
 //
 //  Created by Timo Krall on 11/30/15.
@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UserInformation {
+struct StudentInformation {
 // Struct fixed after looking up https://github.com/RP-3/OnTheMap-Submission
     
     // MARK: Variables
