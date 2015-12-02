@@ -55,7 +55,7 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
     }
 
     // MARK: Functions
-
+    
     // Function for logging in via Facebook
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
 
@@ -63,7 +63,7 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
         
         if error == nil {
             
-            self.transitionToViewControllerTab()
+            transitionToViewControllerTab()
             print("Login complete.")
         
         } else {
@@ -83,7 +83,7 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
     func transitionToViewControllerTab() {
     
         // Transition to tab controller
-        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("Tab") as! UITabBarController
+        let controller = storyboard!.instantiateViewControllerWithIdentifier("Tab") as! UITabBarController
         
         // Fixed transition to tab bar view controller after reading https://discussions.udacity.com/t/help-understanding-uikeyboardtaskqueue-waituntilalltasksarefinished-error/15556/3
         

@@ -70,7 +70,7 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
     // MARK: Actions
     
     @IBAction func inputCancel(sender: AnyObject) {
-        self.dismissViewControllerAnimated(true, completion: nil)
+        dismissViewControllerAnimated(true, completion: nil)
     }
     
     func textFieldDidBeginEditing(textField: UITextField) {
@@ -138,12 +138,12 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
         else if(buttonFind.titleLabel?.text == "Confirm Location"){
             
             // ...change button text
-            self.buttonFind.setTitle("Confirm URL", forState: UIControlState.Normal)
+            buttonFind.setTitle("Confirm URL", forState: UIControlState.Normal)
             
             // ...add location information to reqBody
-            self.reqBody["latitude"] = self.mapView.region.center.latitude
-            self.reqBody["longitude"] = self.mapView.region.center.longitude
-            self.reqBody["mapString"] = self.textFieldEnterLocation.text
+            reqBody["latitude"] = mapView.region.center.latitude
+            reqBody["longitude"] = mapView.region.center.longitude
+            reqBody["mapString"] = textFieldEnterLocation.text
             
             // ...add website information to reqBody
             if reqBody["mediaURL"] as! String != "" {
