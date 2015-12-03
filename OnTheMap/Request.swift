@@ -11,7 +11,7 @@ import UIKit
 
 class Request: NSObject {
 // Instruction on integrating Parse API available at https://docs.google.com/document/d/1E7JIiRxFR3nBiUUzkKal44l9JkSyqNWvQrNH4pDrOFU/pub?embedded=true
-// Class fixed after looking up https://github.com/RP-3/OnTheMap-Submission
+// Class changed and introduced makeRequest simplification to create methods after looking up https://github.com/RP-3/OnTheMap-Submission
     
     // MARK: Variables
     
@@ -28,7 +28,7 @@ class Request: NSObject {
     
     // MARK: Functions
     
-    // Parse API GET method
+    // Simplified GET method created using makeRequest method
     func GET(url: String, headers: [String: String]?, isUdacity: BooleanLiteralType, callback: ((data: AnyObject?, response: NSURLResponse?, error: NSError?) -> Void)?) {
         let request = makeRequest(url, method: "GET", body: nil, headers: headers)
         let task = session.dataTaskWithRequest(request) {downloadData, downloadResponse, downloadError in
@@ -37,7 +37,7 @@ class Request: NSObject {
         task.resume()
     }
     
-    // Parse API POST method
+    // Simplified POST method created using makeRequest method
     func POST(url: String, headers: [String: String]?, body: [String : AnyObject], isUdacity: BooleanLiteralType, callback: ((data: AnyObject?, response: NSURLResponse?, error: NSError?) -> Void)?) {
         let request = makeRequest(url, method: "POST", body: body, headers: headers)
         let task = session.dataTaskWithRequest(request) {downloadData, downloadResponse, downloadError in
@@ -46,9 +46,18 @@ class Request: NSObject {
         task.resume()
     }
     
-    // Parse API PUT method
+    // Simplified PUT method created using makeRequest method
     func PUT(url: String, headers: [String: String]?, body: [String : AnyObject], isUdacity: BooleanLiteralType, callback: ((data: AnyObject?, response: NSURLResponse?, error: NSError?) -> Void)?) {
         let request = makeRequest(url, method: "PUT", body: body, headers: headers)
+        let task = session.dataTaskWithRequest(request) {downloadData, downloadResponse, downloadError in
+            self.parseJSONWithCompletionHandler(downloadData, response: downloadResponse, error: downloadError, isUdacity: isUdacity, completionHandler: callback!)
+        }
+        task.resume()
+    }
+    
+    // Simplified DELETE method created using makeRequest method
+    func DELETE(url: String, headers: [String: String]?, body: [String : AnyObject], isUdacity: BooleanLiteralType, callback: ((data: AnyObject?, response: NSURLResponse?, error: NSError?) -> Void)?) {
+        let request = makeRequest(url, method: "DELETE", body: body, headers: headers)
         let task = session.dataTaskWithRequest(request) {downloadData, downloadResponse, downloadError in
             self.parseJSONWithCompletionHandler(downloadData, response: downloadResponse, error: downloadError, isUdacity: isUdacity, completionHandler: callback!)
         }

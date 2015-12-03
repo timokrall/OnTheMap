@@ -20,7 +20,8 @@ class Udacity {
     var session: [String: String?] = [
         "key": nil,
         "sessionId": nil,
-        "expiration": nil
+        "expiration": nil,
+        "facebookAccessToken": nil
     ]
     
     var user: [String: String?] = [

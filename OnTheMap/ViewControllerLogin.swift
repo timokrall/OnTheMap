@@ -39,14 +39,14 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
         // Prepare Facebook login
         self.loginButton.delegate = self
         
-        // Check whether student is logged in to Facebook and either skip login process or give permissions for login
+        // Check whether user is logged in to Facebook and either skip login process or give permissions for login
         
             if (FBSDKAccessToken.currentAccessToken() == nil) {
                 print("Not logged in.")
                 loginButton.readPermissions = ["public_profile", "email", "user_friends"]
             }else{
                 print("Logged in.")
-                // self.transitionToViewControllerTab()
+                self.transitionToViewControllerTab()
             }
     }
 
@@ -59,7 +59,7 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
     // Function for logging in via Facebook
     func loginButton(loginButton: FBSDKLoginButton!, didCompleteWithResult result: FBSDKLoginManagerLoginResult!, error: NSError!) {
 
-        print("Student logged in")
+        print("User logged in")
         
         if error == nil {
             
@@ -76,7 +76,7 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
     
     func loginButtonDidLogOut(loginButton: FBSDKLoginButton!) {
 
-        print("Student logged out.")
+        print("User logged out.")
     
     }
     
@@ -96,19 +96,19 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
 
     // MARK: Actions
     
+    @IBAction func buttonSignUpUdacity(sender: AnyObject) {
+        
+        // Direct the user to the Udacity Sign Up website
+        // Fixed after reading https://discussions.udacity.com/t/trouble-authenticating-for-on-the-map/16228
+        UIApplication.sharedApplication().openURL(NSURL(string: "https://www.udacity.com/account/auth#!/signup")!)
+        
+    }
+    
     // Action for logging into Facebook
     // Fixed button layout after reading https://discussions.udacity.com/t/facebook-login-logout-button/16670
     @IBAction func loginActionFacebook(sender: FBSDKLoginButton) {
         
-        print("Student logged in.")
-        
-    }
-    
-    @IBAction func buttonSignUpUdacity(sender: AnyObject) {
-        
-        // Direct the student to the Udacity Sign Up website
-        // Fixed after reading https://discussions.udacity.com/t/trouble-authenticating-for-on-the-map/16228
-        UIApplication.sharedApplication().openURL(NSURL(string: "https://www.udacity.com/account/auth#!/signup")!)
+        print("User logged in.")
         
     }
 
