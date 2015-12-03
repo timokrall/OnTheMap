@@ -104,17 +104,31 @@ class ViewControllerLogin: UIViewController, FBSDKLoginButtonDelegate {
         
     }
     
-    // Action for logging into Facebook
+    // TODO: Action for logging into Facebook
     // Fixed button layout after reading https://discussions.udacity.com/t/facebook-login-logout-button/16670
     @IBAction func loginActionFacebook(sender: FBSDKLoginButton) {
         
-        print("User logged in.")
-        
+        udacity.loginFacebook(FBSDKAccessToken.currentAccessToken().tokenString!, callback: { (data, error) -> Void in
+            
+            // Show error message if error occurs
+            if error != nil {
+                
+                let alertController = UIAlertController(title: "Login Error", message: error, preferredStyle: UIAlertControllerStyle.Alert)
+                alertController.addAction(UIAlertAction(title: "Please try again.", style: UIAlertActionStyle.Default,handler: nil))
+                self.presentViewController(alertController, animated: true, completion: nil)
+                
+            }else{
+                
+                // Transition to tab controller if no error occurs
+                self.transitionToViewControllerTab()
+                
+            }
+        })
     }
 
     @IBAction func loginActionUdacity(sender: AnyObject) {
         
-        udacity.login(textFieldEmail.text!, password: textFieldPassword.text!) { (data, error) -> Void in
+        udacity.loginCredentials(textFieldEmail.text!, password: textFieldPassword.text!) { (data, error) -> Void in
             
             // Show error message if error occurs
             if error != nil {

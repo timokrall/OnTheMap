@@ -62,7 +62,52 @@ class Udacity {
         return self.user
     }
     
-    func login(username: String, password: String, callback: ((data: [String: String?]?, error: String?) -> Void)) {
+    // TODO: function for logging into Facebook
+    func loginFacebook(facebookAccessToken: String, callback: ((data: [String: String?]?, error: String?) -> Void)) {
+     
+        let url = baseURL + "session"
+        
+        let reqBody = [
+            "facebook_mobile" : [
+                "facebookAccessToken": facebookAccessToken
+            ]
+        ]
+        
+        request.facebookPOST(url, headers: nil, body: reqBody, isUdacity:false) { (data, response, error) -> Void in
+            
+            // Handle connection error
+            if error != nil {
+                callback(data: nil, error: error?.description)
+                return
+            }
+            
+            // Handle user error
+            let httpResponse = response as! NSHTTPURLResponse
+            if(httpResponse.statusCode > 399 && httpResponse.statusCode < 500){
+                callback(data: nil, error: "Invalid login credentials")
+                return
+            }
+            
+            // No errors
+            // Set up Udacity client session
+            let account = data!["account"] as! NSDictionary
+            self.session["key"] = account["key"]! as? String
+            
+            let dataSession = data!["session"] as! NSDictionary
+            self.session["sessionId"] = dataSession["id"] as? String
+            self.session["expiration"] = dataSession["expiration"] as? String
+            
+            self._getUserData((account["key"]! as? String)!)
+            
+            // Return session data to login view controller
+            callback(data: self.session, error: nil)
+            return
+        }
+        
+    }
+    
+    // Function for logging in via credentials
+    func loginCredentials(username: String, password: String, callback: ((data: [String: String?]?, error: String?) -> Void)) {
         
         let url = baseURL + "session"
         
