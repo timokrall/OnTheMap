@@ -187,7 +187,14 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
             
             if let inputText = textFieldEnterLocation.text {
                 
+                // Display activity indicator
+                let ActivityIndicator = activityIndicator(text: "searching")
+                self.view.addSubview(ActivityIndicator)
+                
                 geoCoder.geocodeAddressString(inputText, completionHandler: { (placemark: [CLPlacemark]?, error: NSError?) -> Void in
+                    
+                    // Remove activity indicator
+                    ActivityIndicator.removeFromSuperview()
                     
                     if let returnedLocation = placemark {
                         

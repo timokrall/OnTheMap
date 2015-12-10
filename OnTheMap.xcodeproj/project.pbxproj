@@ -12,6 +12,7 @@
 		F44791841C0A2BD5002CF94F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44791821C0A2BD5002CF94F /* Main.storyboard */; };
 		F44791861C0A2BD5002CF94F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F44791851C0A2BD5002CF94F /* Assets.xcassets */; };
 		F44791891C0A2BD5002CF94F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F44791871C0A2BD5002CF94F /* LaunchScreen.storyboard */; };
+		F47CD90B1C1A2DAC0044D103 /* activityIndicator.swift in Sources */ = {isa = PBXBuildFile; fileRef = F47CD90A1C1A2DAC0044D103 /* activityIndicator.swift */; };
 		F4A43CFC1C0B63220032D9DE /* Udacity.swift in Sources */ = {isa = PBXBuildFile; fileRef = F4A43CFB1C0B63220032D9DE /* Udacity.swift */; };
 		F4B774D81C0E601B00DABD5A /* facebook_blue.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B774D71C0E601B00DABD5A /* facebook_blue.png */; };
 		F4B774E31C0E70AC00DABD5A /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = F4B774E21C0E70AC00DABD5A /* Default-568h@2x.png */; };
@@ -35,6 +36,7 @@
 		F44791851C0A2BD5002CF94F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F44791881C0A2BD5002CF94F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F447918A1C0A2BD5002CF94F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F47CD90A1C1A2DAC0044D103 /* activityIndicator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = activityIndicator.swift; sourceTree = "<group>"; };
 		F4A43CFB1C0B63220032D9DE /* Udacity.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Udacity.swift; sourceTree = "<group>"; };
 		F4B774D71C0E601B00DABD5A /* facebook_blue.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = facebook_blue.png; sourceTree = "<group>"; };
 		F4B774E21C0E70AC00DABD5A /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				F44791821C0A2BD5002CF94F /* Main.storyboard */,
+				F47CD90A1C1A2DAC0044D103 /* activityIndicator.swift */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -229,6 +232,7 @@
 				F44791811C0A2BD5002CF94F /* ViewControllerLogin.swift in Sources */,
 				F4DA7F9E1C0CBB030090D55C /* userPin.swift in Sources */,
 				F4DA7F981C0B88540090D55C /* Request.swift in Sources */,
+				F47CD90B1C1A2DAC0044D103 /* activityIndicator.swift in Sources */,
 				F4DA7F941C0B87290090D55C /* ViewControllerInput.swift in Sources */,
 				F4DA7F921C0B86C60090D55C /* ViewControllerTable.swift in Sources */,
 				F4DA7F9C1C0C0FC20090D55C /* studentStruct.swift in Sources */,

@@ -174,14 +174,25 @@ class ViewControllerLogin: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     
     @IBAction func loginActionUdacity(sender: AnyObject) {
         
+        // Display activity indicator
+        let ActivityIndicator = activityIndicator(text: "logging in")
+        self.view.addSubview(ActivityIndicator)
+        
         udacity.loginCredentials(textFieldEmail.text!, password: textFieldPassword.text!) { (data, error) -> Void in
             
             // Show error message if error occurs
             if error != nil {
                 
+                // Remove activity indicator
+                ActivityIndicator.removeFromSuperview()
+                
+                // Show alert message
                 self.showAlertMsg("Login Error", errorMsg: error!)
                 
             }else{
+                
+                // Remove activity indicator
+                ActivityIndicator.removeFromSuperview()
                 
                 // Transition to tab controller if no error occurs
                 self.transitionToViewControllerTab()
