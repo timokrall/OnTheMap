@@ -9,7 +9,7 @@
 import Foundation
 import CoreLocation
 
-class Parse {
+class Parse{
 // Instruction on parse integration available at https://docs.google.com/document/d/1E7JIiRxFR3nBiUUzkKal44l9JkSyqNWvQrNH4pDrOFU/pub?embedded=true
 // Code of this class fixed after comparing with https://github.com/RP-3/OnTheMap-Submission
     

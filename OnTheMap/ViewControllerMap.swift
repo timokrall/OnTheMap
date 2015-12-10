@@ -18,6 +18,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
     let studentDataModel = studentModel.sharedInstance()
     let parse = Parse.sharedInstance()
     let udacity = Udacity.sharedInstance()
+    let loginManager = FBSDKLoginManager()
 
     // MARK: Outlets
     
@@ -122,8 +123,7 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
     @IBAction func mapLogout(sender: AnyObject) {
         
         // Logout from Facebook
-        // Retrieved the code for logging out from Facebook from http://stackoverflow.com/questions/29374235/facebook-sdk-4-0-ios-swift-log-a-user-out-programatically
-        let loginManager = FBSDKLoginManager()
+        //Retrieved the code for logging out from Facebook from http://stackoverflow.com/questions/29374235/facebook-sdk-4-0-ios-swift-log-a-user-out-programatically
         loginManager.logOut()
         
         // Logout from Udacity

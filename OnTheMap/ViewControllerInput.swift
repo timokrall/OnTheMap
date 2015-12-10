@@ -22,6 +22,16 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
     let udacity = Udacity.sharedInstance()
     let geoCoder = CLGeocoder()
     
+    var location: CLLocation!
+    var region: MKCoordinateRegion!
+    var latitude: AnyObject?
+    var longitude: AnyObject?
+    var errorMsg: String = ""
+    
+    var uniqueKey: String = ""
+    var firstName: String = ""
+    var lastName: String = ""
+    
     var reqBody: [String: AnyObject] = [
         "firstName": "",
         "lastName": "",
@@ -29,7 +39,9 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
         "mediaURL": "",
         "uniqueKey": "",
         "latitude": "",
-        "longitude": ""
+        "longitude": "",
+        //"lat": "",
+        //"lon": ""
     ]
     
     var webView: WKWebView!
@@ -200,17 +212,20 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
     
     // MARK: Lifecycle
     
+    // Submit the data from Udacity or facebook login to reqBody
+    // Fixed after comparing with code in https://github.com/mechdon/OnTheMap
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Setup reqBody
-        let studentId = udacity.getSession()["key"]!
+        uniqueKey = NSUserDefaults.standardUserDefaults().objectForKey("uniqueKey")! as! String
+        firstName = NSUserDefaults.standardUserDefaults().objectForKey("firstName")! as! String
+        lastName = NSUserDefaults.standardUserDefaults().objectForKey("lastName")! as! String
         
-        reqBody["uniqueKey"] = studentId
-        reqBody["firstName"] = udacity.getUserData()["firstName"]!
-        reqBody["lastName"] = udacity.getUserData()["lastName"]!
+        reqBody["uniqueKey"] = uniqueKey
+        reqBody["firstName"] = firstName
+        reqBody["lastName"] = lastName
         
-        if let userParseData = studentDataModel.getStudentInfo(studentId!) {
+        if let userParseData = studentDataModel.getStudentInfo(uniqueKey) {
             reqBody["mapString"] = userParseData.mapString!
             reqBody["mediaURL"] = userParseData.mediaURL!
         }
@@ -225,6 +240,4 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
         // Dispose of any resources that can be recreated.
     }
     
-
-
 }

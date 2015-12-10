@@ -46,7 +46,7 @@ class Request: NSObject {
         task.resume()
     }
     
-    // TODO: POST method for Facebook session
+    // POST method for Facebook session
     func facebookPOST(url: String, headers: [String: String]?, body: [String : AnyObject], isUdacity: BooleanLiteralType, callback: ((data: AnyObject?, response: NSURLResponse?, error: NSError?) -> Void)?) {
         
         let request = NSMutableURLRequest(URL: NSURL(string: "https://www.udacity.com/api/session")!)
