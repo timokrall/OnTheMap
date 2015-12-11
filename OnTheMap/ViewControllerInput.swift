@@ -40,8 +40,6 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
         "uniqueKey": "",
         "latitude": "",
         "longitude": "",
-        //"lat": "",
-        //"lon": ""
     ]
     
     var webView: WKWebView!

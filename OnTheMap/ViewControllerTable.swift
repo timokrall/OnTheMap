@@ -49,53 +49,47 @@ class ViewControllerTable: UITableViewController {
             cell = UITableViewCell()
             
         }
-        
-        if let studentData = studentDataModel.getStudentData(){
-            
-            // Enter saver student names into cells
-            let currentStudent = studentData[indexPath.row]
-            cell!.textLabel!.text = currentStudent.firstName! + " " + currentStudent.lastName!
-            
-        }
-        
+
+        // Enter saver student names into cells
+        let currentStudent = self.studentDataModel.studentData![indexPath.row]
+        cell!.textLabel!.text = currentStudent.firstName! + " " + currentStudent.lastName!
         return cell!
         
     }
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if let studentData = studentDataModel.getStudentData(){
+        
+        // Number of cells is equal to the number of saved students
+        if self.studentDataModel.studentData != nil {
             
-            // Number of cells is equal to the number of saved students
-            return studentData.count
-            
-        }else{
-            
+            return self.studentDataModel.studentData!.count
+        
+        } else {
+        
             return 0
             
         }
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        
-        if let studentData = studentDataModel.getStudentData(){
             
-            let student = studentData[indexPath.row]
+        let student = self.studentDataModel.studentData![indexPath.row]
             
-            if let url = student.mediaURL{
+        if let url = student.mediaURL{
                 
-                // If a student selects a cell and no error occurs, open the respective student URL
-                let app = UIApplication.sharedApplication()
-                app.openURL(NSURL(string: url)!)
+            // If a student selects a cell and no error occurs, open the respective student URL
+            let app = UIApplication.sharedApplication()
+            app.openURL(NSURL(string: url)!)
                 
-            }else{
+        }else{
                 
-                // If a student selects a cell and there is no student URL associated with that cell, display an error
-                let alertController = UIAlertController(title: "URL Error", message: "", preferredStyle: UIAlertControllerStyle.Alert)
-                alertController.addAction(UIAlertAction(title: "Please input a URL.", style: UIAlertActionStyle.Default,handler: nil))
-                self.presentViewController(alertController, animated: true, completion: nil)
+            // If a student selects a cell and there is no student URL associated with that cell, display an error
+            let alertController = UIAlertController(title: "URL Error", message: "", preferredStyle: UIAlertControllerStyle.Alert)
+            alertController.addAction(UIAlertAction(title: "Please input a URL.", style: UIAlertActionStyle.Default,handler: nil))
+            self.presentViewController(alertController, animated: true, completion: nil)
                 
-            }
         }
+
     }
 
 

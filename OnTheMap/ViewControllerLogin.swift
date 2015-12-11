@@ -27,6 +27,7 @@ class ViewControllerLogin: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     // MARK: Variables
     
     let udacity = Udacity.sharedInstance()
+    let ActivityIndicator = activityIndicator(text: "logging in")
     var dict : NSDictionary!
     var login : FBSDKLoginManager = FBSDKLoginManager()
     
@@ -175,8 +176,9 @@ class ViewControllerLogin: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     @IBAction func loginActionUdacity(sender: AnyObject) {
         
         // Display activity indicator
-        let ActivityIndicator = activityIndicator(text: "logging in")
-        self.view.addSubview(ActivityIndicator)
+        dispatch_async(dispatch_get_main_queue(), {
+            self.view.addSubview(self.ActivityIndicator)
+        })
         
         udacity.loginCredentials(textFieldEmail.text!, password: textFieldPassword.text!) { (data, error) -> Void in
             
@@ -184,15 +186,18 @@ class ViewControllerLogin: UIViewController, UITextFieldDelegate, FBSDKLoginButt
             if error != nil {
                 
                 // Remove activity indicator
-                ActivityIndicator.removeFromSuperview()
-                
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.ActivityIndicator.removeFromSuperview()
+                })
                 // Show alert message
                 self.showAlertMsg("Login Error", errorMsg: error!)
                 
             }else{
                 
                 // Remove activity indicator
-                ActivityIndicator.removeFromSuperview()
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.ActivityIndicator.removeFromSuperview()
+                })
                 
                 // Transition to tab controller if no error occurs
                 self.transitionToViewControllerTab()

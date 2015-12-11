@@ -22,10 +22,6 @@ class studentModel {
         studentData = newData.sort({$0.updatedAt!.timeIntervalSinceNow > $1.updatedAt!.timeIntervalSinceNow})
     }
     
-    func getStudentData()->[StudentInformation]?{
-        return studentData
-    }
-    
     func getStudentInfo(studentId: String)->StudentInformation? {
         
         // Return nil if no student exists

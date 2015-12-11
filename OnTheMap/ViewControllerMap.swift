@@ -58,24 +58,21 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
                 
                 // Display student data if no error occurs
                 var studentPinsArray: Array<studentPin> = []
-                
-                if let studentData = self.studentDataModel.getStudentData(){
-                    
-                    for student in studentData {
+            
+                for student in self.studentDataModel.studentData! {
                         
-                        // Setup student first and last name
-                        let studentName = student.firstName! + " " + student.lastName!
+                    // Setup student first and last name
+                    let studentName = student.firstName! + " " + student.lastName!
                         
-                        // Setup student study location
-                        let studentCoord = CLLocationCoordinate2D(latitude: student.latitude!, longitude: student.longitude!)
+                    // Setup student study location
+                    let studentCoord = CLLocationCoordinate2D(latitude: student.latitude!, longitude: student.longitude!)
                         
-                        // Setup student URL
-                        let studentSubtitle = student.mediaURL!
+                    // Setup student URL
+                    let studentSubtitle = student.mediaURL!
                         
-                        // Show collected student information
-                        let newStudentPin = studentPin(title: studentName, subtitle: studentSubtitle, coordinate: studentCoord)
+                    // Show collected student information
+                    let newStudentPin = studentPin(title: studentName, subtitle: studentSubtitle, coordinate: studentCoord)
                         studentPinsArray.append(newStudentPin)
-                    }
                 }
                 
                 dispatch_async(dispatch_get_main_queue(), {

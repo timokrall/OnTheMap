@@ -68,7 +68,7 @@ class Parse{
     func upsertStudentData(studentId: String, studentUpdate: [String: AnyObject], callback: ((error: String?) -> Void)) {
         
         // Check location data has loaded
-        if(studentDataModel.getStudentData() == nil){
+        if(self.studentDataModel.studentData == nil){
             callback(error: "Student Data not yet loaded")
             return
         }
@@ -77,9 +77,7 @@ class Parse{
         var alreadyPosted: Bool = false
         var objectId: String? = nil
         
-        let studentData = studentDataModel.getStudentData()
-        
-        for student in studentData! {
+        for student in self.studentDataModel.studentData! {
             if (student.uniqueKey == studentId){
                 alreadyPosted = true
                 objectId = student.objectId
