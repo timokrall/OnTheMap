@@ -27,6 +27,7 @@ class ViewControllerLogin: UIViewController, UITextFieldDelegate, FBSDKLoginButt
     // MARK: Variables
     
     let udacity = Udacity.sharedInstance()
+    let loginView : FBSDKLoginButton = FBSDKLoginButton()
     let ActivityIndicator = activityIndicator(text: "logging in")
     var dict : NSDictionary!
     var login : FBSDKLoginManager = FBSDKLoginManager()
@@ -49,10 +50,21 @@ class ViewControllerLogin: UIViewController, UITextFieldDelegate, FBSDKLoginButt
         else
         {
             // Display Facebook Login Button
-            // Code found at https://github.com/mechdon/OnTheMap
-            let loginView : FBSDKLoginButton = FBSDKLoginButton()
-            self.view.addSubview(loginView)
-            loginView.frame = CGRectMake(0, 520, 288, 40)
+            // Parts of code found at https://github.com/mechdon/OnTheMap
+            // Added constraints after reading http://stackoverflow.com/questions/26180822/swift-adding-constraints-programmatically
+            
+            let loginView = FBSDKLoginButton()
+            loginView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(loginView)
+            
+            let gapConstraint = NSLayoutConstraint(item: loginView, attribute: NSLayoutAttribute.Bottom, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.Bottom, multiplier: 1, constant: -20)
+            view.addConstraint(gapConstraint)
+            
+            let horizontalConstraint = NSLayoutConstraint(item: loginView, attribute: NSLayoutAttribute.CenterX, relatedBy: NSLayoutRelation.Equal, toItem: view, attribute: NSLayoutAttribute.CenterX, multiplier: 1, constant: 0)
+            view.addConstraint(horizontalConstraint)
+            
+            // self.view.addSubview(loginView)
+            loginView.frame = CGRectMake(0, 550, 288, 40)
             loginView.center.x = self.view.center.x
             loginView.readPermissions = ["public_profile", "email", "user_friends"]
             loginView.delegate = self
