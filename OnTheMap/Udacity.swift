@@ -75,6 +75,8 @@ class Udacity: NSObject {
             // Set up Udacity client session
             let account = data!["account"] as! NSDictionary
             self.session["key"] = account["key"]! as? String
+        
+            NSUserDefaults.standardUserDefaults().setObject(self.session["key"]!, forKey: "uniqueKey")
             
             let dataSession = data!["session"] as! NSDictionary
             self.session["sessionId"] = dataSession["id"] as? String
@@ -138,6 +140,9 @@ class Udacity: NSObject {
             
             self.user["firstName"] = firstName
             self.user["lastName"] = lastName
+            
+            NSUserDefaults.standardUserDefaults().setObject(firstName, forKey: "firstName")
+            NSUserDefaults.standardUserDefaults().setObject(lastName, forKey: "lastName")
             
             
         }

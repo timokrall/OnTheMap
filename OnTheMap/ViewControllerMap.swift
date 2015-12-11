@@ -134,6 +134,8 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
         
     }
     
+    // func DELETE(url: String, headers: [String: String]?, body: [String : AnyObject], isUdacity: BooleanLiteralType, callback: ((data: AnyObject?, response: NSURLResponse?, error: NSError?) -> Void)?) {
+    
     @IBAction func mapRefresh(sender: AnyObject) {
         
         // Retrieve current student data if refresh button is pressed
