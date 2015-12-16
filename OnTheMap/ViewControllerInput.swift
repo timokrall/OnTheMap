@@ -113,7 +113,7 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
         
         // If student is asked to confirm URL and button is pressed, submit student data to parse
         if(buttonFind.titleLabel?.text == "Confirm URL"){
-
+            
             let userId = reqBody["uniqueKey"] as! String
             reqBody["mediaURL"] = textFieldEnterLocation.text
             
@@ -187,12 +187,17 @@ class ViewControllerInput: UIViewController, MKMapViewDelegate, WKNavigationDele
                 
                 // Display activity indicator
                 let ActivityIndicator = activityIndicator(text: "searching")
-                self.view.addSubview(ActivityIndicator)
                 
+                dispatch_async(dispatch_get_main_queue(), {
+                    self.view.addSubview(ActivityIndicator)
+                })
+                    
                 geoCoder.geocodeAddressString(inputText, completionHandler: { (placemark: [CLPlacemark]?, error: NSError?) -> Void in
                     
                     // Remove activity indicator
-                    ActivityIndicator.removeFromSuperview()
+                    dispatch_async(dispatch_get_main_queue(), {
+                        ActivityIndicator.removeFromSuperview()
+                    })
                     
                     if let returnedLocation = placemark {
                         

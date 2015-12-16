@@ -132,6 +132,9 @@ class ViewControllerTable: UITableViewController {
     
     @IBAction func tableLogout(sender: FBSDKLoginButton) {
         
+        // Use DELETE method recommended by Udacity for logging out
+        Request.sharedInstance().DELETE()
+        
         // Logout from Facebook
         // Retrieved the code for logging out from Facebook from http://stackoverflow.com/questions/29374235/facebook-sdk-4-0-ios-swift-log-a-user-out-programatically
         loginManager.logOut()

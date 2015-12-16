@@ -119,6 +119,9 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
     
     @IBAction func mapLogout(sender: AnyObject) {
         
+        // Use DELETE method recommended by Udacity for logging out
+        Request.sharedInstance().DELETE()
+        
         // Logout from Facebook
         //Retrieved the code for logging out from Facebook from http://stackoverflow.com/questions/29374235/facebook-sdk-4-0-ios-swift-log-a-user-out-programatically
         loginManager.logOut()
@@ -130,8 +133,6 @@ class ViewControllerMap: UIViewController, MKMapViewDelegate {
         }
         
     }
-    
-    // func DELETE(url: String, headers: [String: String]?, body: [String : AnyObject], isUdacity: BooleanLiteralType, callback: ((data: AnyObject?, response: NSURLResponse?, error: NSError?) -> Void)?) {
     
     @IBAction func mapRefresh(sender: AnyObject) {
         
